@@ -8,12 +8,12 @@ const NavBar = () => {
         <Navbar className={styles.NavBar} expand="md" fixed="top">
             <Container>
                 <Navbar.Brand>
-                    <img src={logo} alt="logo" height="64" />
+                    <img src={logo} alt="logo" height="45" />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto text-left">
-                        <Nav.Link>
+                        <Nav.Link className="nav">
                             <i className="fas fa-home"></i>Home
                         </Nav.Link>
                         <Nav.Link>
