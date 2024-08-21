@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 .App {
     font-family: "Montserrat", sans-serif;
     background-color: #e3e3e3;
@@ -40,4 +41,10 @@
 
   .NavBar {
     color: #855DCD;
+  }
+
+  .Content {
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #e3e3e3;
   }
