@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
@@ -15,7 +16,8 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 
-const SignUpForm = () => {
+
+function SignUpForm() {
     const [signUpData, setSignUpData] = useState({
         username: "",
         password1: "",
@@ -36,11 +38,13 @@ const SignUpForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log("Form submitted");
         try {
             await axios.post("/dj-rest-auth/registration/", signUpData);
             history.push("/signin");
         } catch (err) {
-            setErrors(err.response?.data);
+            console.error("Registration failed", err); // Log the full error object
+            setErrors(err.response?.data || { non_field_errors: ["An error occurred. Please try again."] });
         }
     };
 
@@ -59,10 +63,9 @@ const SignUpForm = () => {
                                 placeholder="Username"
                                 name="username"
                                 value={username}
-                                onChange={handleChange}
-                            />
+                                onChange={handleChange} />
                         </Form.Group>
-                        {errors.username?.map((message, idx) => (
+                        {errors?.username?.map((message, idx) => (
                             <Alert variant="warning" key={idx}>
                                 {message}
                             </Alert>
@@ -76,10 +79,9 @@ const SignUpForm = () => {
                                 placeholder="Password"
                                 name="password1"
                                 value={password1}
-                                onChange={handleChange}
-                            />
+                                onChange={handleChange} />
                         </Form.Group>
-                        {errors.password1?.map((message, idx) => (
+                        {errors?.password1?.map((message, idx) => (
                             <Alert key={idx} variant="warning">
                                 {message}
                             </Alert>
@@ -93,14 +95,14 @@ const SignUpForm = () => {
                                 placeholder="Confirm password"
                                 name="password2"
                                 value={password2}
-                                onChange={handleChange}
-                            />
+                                onChange={handleChange} />
                         </Form.Group>
-                        {errors.password2?.map((message, idx) => (
+                        {errors?.password2?.map((message, idx) => (
                             <Alert key={idx} variant="warning">
                                 {message}
                             </Alert>
                         ))}
+                        
 
                         <Button
                             className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
@@ -122,8 +124,9 @@ const SignUpForm = () => {
                     </Link>
                 </Container>
             </Col>
+
         </Row>
     );
-};
+}
 
 export default SignUpForm;
